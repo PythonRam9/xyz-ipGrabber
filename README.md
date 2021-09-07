@@ -15,5 +15,5 @@ A clone of [Grabify](https://grabify.link/) | Also my first web app :)
 <code><img height="20" src="https://github.com/abranhe/programming-languages-logos/blob/master/src/css/css_64x64.png"></code>
 ## Things to do:
 
-- [] Create a working prototype
-- [] Add login and link stats for the creator of a link
+- [ ] Create a working prototype
+- [ ] Add login and link stats for the creator of a link
