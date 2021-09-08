@@ -104,8 +104,8 @@ function create() {
         alert('The webhook you have entered seems to be invalid')
 
       } else {
-        var hook_encode = encodeURI(document.getElementById('hook').text);
-        var redirect_encode = encodeURI(document.getElementById('redirect').text);
+        var redirect_encode = encodeURIComponent(document.getElementById('redirect').value);
+        var hook_encode = encodeURIComponent(document.getElementById('hook').value);
         window.location.replace('https://xyz.webhooks.repl.co/create?hook=' + hook_encode + '&redirect=' + redirect_encode)
       }
 }
