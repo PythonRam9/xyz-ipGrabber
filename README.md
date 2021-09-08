@@ -17,3 +17,4 @@ A clone of [Grabify](https://grabify.link/) | Also my first web app :)
 
 - [ ] Create a working prototype
 - [ ] Add login and link stats for the creator of a link
+- [ ] Provide info about user's IP
